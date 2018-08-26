@@ -40,8 +40,6 @@ def getStateOfBoard(board):
                 for char in board:
                     if char == element:
                         count = count + 1
-                print(element)
-                print(count)
                 return count
 
             numCrosses = countElement(BoardElements.X, board)
@@ -57,14 +55,15 @@ def getStateOfBoard(board):
     def checkWin(element, board):
         return
 
-    # elif checkNoughtsWin(board):
-        # return BoardState.NOUGHTS_WIN
-
-    # elif checkCrossesWin(board):
-        # return BoardState.CROSSES_WIN
 
     # elif checkDraw(board):
         # return BoardState.DRAW
+
+    def checkFull(board):
+        for char in board:
+            if char == '_':
+                return False
+        return True
 
     # catch any other possibilities that I may have forgotten
     # return error
@@ -73,11 +72,14 @@ def getStateOfBoard(board):
         return BoardState.EMPTY
     elif not checkIsValid(board):
         return BoardState.INVALID
-    # elif checkWin(BoardElements.X, board):
-        # return BoardState.CROSSES_WIN
-    # elif checkWin(BoardElements.O, board):
-        # return BoardState.NOUGHTS_WIN
+    elif checkWin(BoardElements.X, board):
+         return BoardState.CROSSES_WIN
+    elif checkWin(BoardElements.O, board):
+        return BoardState.NOUGHTS_WIN
+    elif checkFull(board):
+        return BoardState.DRAW
     else:
+        # just in case I missed a case
         raise ValueError("Board does not match any of the states")
 
 # leave unchanged
