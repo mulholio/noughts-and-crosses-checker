@@ -15,7 +15,7 @@ class BoardState:
 
 class BoardElements:
     X='X'
-    O='X'
+    O='O'
     _='_'
 
 def getStateOfBoard(board):
@@ -32,7 +32,7 @@ def getStateOfBoard(board):
         """Checks if players could have arrived at the current board"""
         
         def elementDifference(board):
-            """Returns the difference between #crosses and #noughts"""
+            """Returns the difference between no. crosses and no. noughts"""
 
             def countElement(element, board):
                 """Count the number of noughts, crosses or empties"""
@@ -40,6 +40,8 @@ def getStateOfBoard(board):
                 for char in board:
                     if char == element:
                         count = count + 1
+                print(element)
+                print(count)
                 return count
 
             numCrosses = countElement(BoardElements.X, board)
